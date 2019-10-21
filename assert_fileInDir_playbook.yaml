@@ -1,0 +1,15 @@
+---
+- name: Assert file within target dir
+  gather_facts: false
+  hosts: all
+  tasks:
+  - name: List files in /tmp
+    command: ls /tmp
+    register: list_tmp_files
+  
+  - debug: var=list_tmp_files.stdout_lines
+
+  - name: Assert ryanTest.txt exists as expected
+    assert:
+            that:
+                    - "'ryanTest.txt' in list_tmp_files.stdout_lines"

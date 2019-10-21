@@ -1,0 +1,9 @@
+---
+- name: My first playbook
+  gather_facts: true
+  hosts: all
+  tasks:
+    - ping:
+      register: result
+
+    - debug: var=result
